@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:api_practice/model/product_model.dart';
 import 'package:api_practice/repository/product_repo.dart';
 
@@ -6,6 +8,7 @@ class ProductViewModel {
 
   Future<ProductModel> fetchProductAPi() async {
     final response = await _repo.fetchProductApi();
+    log(response.toString());
     return response;
   }
 }

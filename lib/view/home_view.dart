@@ -12,6 +12,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   ProductViewModel productViewModel = ProductViewModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,26 +27,25 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: ListView(
         children: [
-          FutureBuilder(
-            future: productViewModel.fetchProductAPi(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: SpinKitFadingCircle(
-                    size: 40,
-                    color: Colors.amber,
-                  ),
-                );
-              } else {
-                return ListView.builder(
-                    itemCount: snapshot.data!.products!.length,
-                    itemBuilder: (context, index) {
-                      return const Card(
-                        child: Column(),
-                      );
-                    });
-              }
-            },
+          SizedBox(
+            height: 500,
+            child: FutureBuilder(
+              future: productViewModel.fetchProductAPi(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: SpinKitFadingCircle(
+                      size: 40,
+                      color: Colors.amber,
+                    ),
+                  );
+                } else {
+                  return ListView.builder(itemBuilder: (context, index) {
+                    return ListTile();
+                  });
+                }
+              },
+            ),
           )
         ],
       ),
