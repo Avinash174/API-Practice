@@ -1,4 +1,4 @@
-import 'package:api_practice/view_model/product_view_model.dart';
+import 'package:api_practice/view_model/post_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,8 +11,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  ProductViewModel productViewModel = ProductViewModel();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
           SizedBox(
             height: 500,
             child: FutureBuilder(
-              future: productViewModel.fetchProductAPi(),
+              future: PostViewModel().fetchPostApi(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
@@ -42,9 +40,7 @@ class _HomeViewState extends State<HomeView> {
                 } else {
                   return ListView.builder(itemBuilder: (context, index) {
                     return ListTile(
-                      leading: Text(
-                        snapshot.data!.products![index].id.toString(),
-                      ),
+                      leading: Text(''),
                     );
                   });
                 }
