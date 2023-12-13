@@ -40,7 +40,9 @@ class _HomeViewState extends State<HomeView> {
                 } else {
                   return ListView.builder(itemBuilder: (context, index) {
                     return ListTile(
-                      leading: Text(''),
+                      leading: Text(
+                        snapshot.data!.id.toString(),
+                      ),
                     );
                   });
                 }
