@@ -1,5 +1,5 @@
 class PostModel {
-  int? id;
+  late int id;
   String? slug;
   String? url;
   String? title;
@@ -13,7 +13,7 @@ class PostModel {
   int? userId;
 
   PostModel(
-      {this.id,
+      {required this.id,
       this.slug,
       this.url,
       this.title,

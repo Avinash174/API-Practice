@@ -26,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
       body: ListView(
         children: [
           SizedBox(
-            height: 500,
+            height: 100,
             child: FutureBuilder(
               future: PostViewModel().fetchPostApi(),
               builder: (context, snapshot) {
@@ -40,8 +40,11 @@ class _HomeViewState extends State<HomeView> {
                 } else {
                   return ListView.builder(itemBuilder: (context, index) {
                     return ListTile(
-                      leading: Text(
-                        snapshot.data!.id.toString(),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Text(
+                          snapshot.data!.id.toString(),
+                        ),
                       ),
                     );
                   });
