@@ -29,25 +29,25 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: ListView(
           children: [
-            FutureBuilder<PostModel>(
-                future: postViewModel.fetchPostApi(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const SpinKitFadingCircle(
-                      color: Colors.amberAccent,
-                      size: 40,
-                    );
-                  } else {
-                    return SizedBox(
-                      height: 300,
-                      child: ListView.builder(
+            SizedBox(
+              height: 500,
+              child: FutureBuilder<PostModel>(
+                  future: postViewModel.fetchPostApi(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const SpinKitFadingCircle(
+                        color: Colors.amberAccent,
+                        size: 40,
+                      );
+                    } else {
+                      return ListView.builder(
                         itemCount: postModel.length,
                         scrollDirection: Axis.vertical,
                         itemBuilder: ((context, index) {
                           return ListTile(
                             leading: CircleAvatar(
                               child: Text(
-                                snapshot.data!.id.toString(),
+                                'data',
                                 style: GoogleFonts.poppins(
                                   color: Colors.amber,
                                 ),
@@ -55,10 +55,10 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           );
                         }),
-                      ),
-                    );
-                  }
-                }),
+                      );
+                    }
+                  }),
+            ),
           ],
         ));
   }

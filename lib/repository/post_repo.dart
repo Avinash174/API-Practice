@@ -11,6 +11,7 @@ class PostRepo {
     log('$response');
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
+      log(response.body);
       return PostModel.fromJson(body);
     }
     throw Exception("Error");
