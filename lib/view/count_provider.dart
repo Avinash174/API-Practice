@@ -43,11 +43,30 @@ class CountWithProvider extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          counterProvider.increment();
-        },
-        child: Icon(Icons.add),
+      floatingActionButton: Row(
+        children: [
+          const SizedBox(
+            width: 30,
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              counterProvider.increment();
+            },
+            child: const Icon(Icons.add),
+          ),
+          const SizedBox(
+            width: 215,
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              counterProvider.decrement();
+            },
+            child: Text(
+              'sub',
+              style: GoogleFonts.poppins(fontSize: 12),
+            ),
+          ),
+        ],
       ),
     );
   }

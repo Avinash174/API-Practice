@@ -7,4 +7,9 @@ class CountProvider with ChangeNotifier {
     count++;
     notifyListeners();
   }
+
+  void decrement() {
+    count--;
+    notifyListeners();
+  }
 }
