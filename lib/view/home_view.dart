@@ -14,52 +14,52 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.sizeOf(context).height * 1;
     List<PostModel> postModel = [];
     PostViewModel postViewModel = PostViewModel();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Product',
-          style: GoogleFonts.poppins(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
+        appBar: AppBar(
+          title: Text(
+            'Product',
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
-      ),
-      body: SizedBox(
-        height: 500,
-        child: FutureBuilder(
-          future: postViewModel.fetchPostApi(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: SpinKitFadingCircle(
-                  size: 40,
-                  color: Colors.red,
-                ),
-              );
-            } else {
-              return ListView.builder(
-                itemCount: postModel.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      radius: 30,
-                      child: Text(snapshot.data!.id.toString()),
-                    ),
-                    trailing: Image.asset(
-                      snapshot.data!.image.toString(),
-                    ),
-                    title: Text(
-                      snapshot.data!.title.toString(),
-                    ),
-                  );
-                },
-              );
-            }
-          },
-        ),
-      ),
-    );
+        body: ListView(
+          children: [
+            FutureBuilder<PostModel>(
+                future: postViewModel.fetchPostApi(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const SpinKitFadingCircle(
+                      color: Colors.amberAccent,
+                      size: 40,
+                    );
+                  } else {
+                    return SizedBox(
+                      height: 300,
+                      child: ListView.builder(
+                        itemCount: postModel.length,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: ((context, index) {
+                          return ListTile(
+                            leading: CircleAvatar(
+                              child: Text(
+                                snapshot.data!.id.toString(),
+                                style: GoogleFonts.poppins(
+                                  color: Colors.amber,
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                      ),
+                    );
+                  }
+                }),
+          ],
+        ));
   }
 }
