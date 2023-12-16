@@ -19,48 +19,48 @@ class _HomeViewState extends State<HomeView> {
     List<PostModel> postModel = [];
     PostViewModel postViewModel = PostViewModel();
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Product',
-            style: GoogleFonts.poppins(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
+      appBar: AppBar(
+        title: Text(
+          'Product',
+          style: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
           ),
         ),
-        body: ListView(
-          children: [
-            SizedBox(
-              height: 200,
-              child: FutureBuilder<PostModel>(
-                  future: postViewModel.fetchPostApi(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const SpinKitFadingCircle(
-                        color: Colors.amberAccent,
-                        size: 40,
+      ),
+      body: ListView(
+        children: [
+          SizedBox(
+            height: 500,
+            child: FutureBuilder<PostModel>(
+              future: postViewModel.fetchPostApi(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: SpinKitFadingCircle(
+                      size: 40,
+                      color: Colors.amber,
+                    ),
+                  );
+                } else {
+                  return ListView.builder(
+                    itemCount: postModel.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          Text(
+                            postModel.length.toString(),
+                          )
+                        ],
                       );
-                    } else {
-                      return ListView.builder(
-                        itemCount: postModel.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: ((context, index) {
-                          return ListTile(
-                            leading: CircleAvatar(
-                              child: Text(
-                                'data',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.amber,
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                      );
-                    }
-                  }),
+                    },
+                  );
+                }
+              },
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
