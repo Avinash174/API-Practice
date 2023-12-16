@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class PostRepo {
   Future<PostModel> fetchPostApi() async {
-    String Url = 'https://jsonplaceholder.org/posts';
+    String Url = 'https://jsonplaceholder.typicode.com/posts';
     final response = await http.get(Uri.parse(Url));
     log('$response');
     if (response.statusCode == 200) {
