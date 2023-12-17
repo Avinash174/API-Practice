@@ -36,10 +36,9 @@ class _HomeViewState extends State<HomeView> {
               future: postViewModel.fetchPostApi(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
+                  return Center(
                     child: SpinKitFadingCircle(
                       size: 40,
-                      color: Colors.amber,
                     ),
                   );
                 } else {
